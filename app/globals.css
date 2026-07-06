@@ -1,0 +1,250 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-heading: var(--font-baloo);
+  --font-display: var(--font-baloo);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  /* Warden brand tokens — "Honey & Amethyst" */
+  --color-canvas: var(--canvas);
+  --color-canvas-edge: var(--canvas-edge);
+  --color-plum: var(--plum);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-energy: var(--energy);
+  --color-wardgreen: var(--wardgreen);
+  --color-alarm: var(--alarm);
+  --color-ink: var(--ink);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  /* Warden — Honey & Amethyst (light theme only, by design) */
+  --canvas: #fbf1da;
+  --canvas-edge: #efd9a8;
+  --plum: #5b2a86;
+  --gold: #e8b65a;
+  --gold-deep: #b8862f;
+  --energy: #ffb84d;
+  --wardgreen: #41c99a;
+  --alarm: #e8503c;
+  --ink: #2e2140;
+
+  --background: #fbf1da;
+  --foreground: #2e2140;
+  --card: #fffbf3;
+  --card-foreground: #2e2140;
+  --popover: #fffbf3;
+  --popover-foreground: #2e2140;
+  --primary: #8b4fd1;
+  --primary-foreground: #fffbf3;
+  --secondary: #f4e4bd;
+  --secondary-foreground: #5b2a86;
+  --muted: #f3e8cd;
+  --muted-foreground: #7a6e86;
+  --accent: #f0e4fa;
+  --accent-foreground: #5b2a86;
+  --destructive: #e8503c;
+  --border: #e7d5ab;
+  --input: #e7d5ab;
+  --ring: #8b4fd1;
+  --chart-1: #8b4fd1;
+  --chart-2: #e8b65a;
+  --chart-3: #41c99a;
+  --chart-4: #ffb84d;
+  --chart-5: #e8503c;
+  --radius: 1rem;
+  --sidebar: #fffbf3;
+  --sidebar-foreground: #2e2140;
+  --sidebar-primary: #8b4fd1;
+  --sidebar-primary-foreground: #fffbf3;
+  --sidebar-accent: #f0e4fa;
+  --sidebar-accent-foreground: #5b2a86;
+  --sidebar-border: #e7d5ab;
+  --sidebar-ring: #8b4fd1;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-image: radial-gradient(
+      ellipse 120% 90% at 50% 0%,
+      var(--canvas) 0%,
+      var(--canvas) 55%,
+      var(--canvas-edge) 100%
+    );
+    background-attachment: fixed;
+  }
+  html {
+    @apply font-sans scroll-smooth;
+  }
+}
+
+@layer utilities {
+  /* Chunky game-title treatment: gold fill + plum outline */
+  .text-game-title {
+    font-family: var(--font-baloo);
+    font-weight: 800;
+    color: var(--gold);
+    background: linear-gradient(180deg, #f6d488 0%, var(--gold) 45%, var(--gold-deep) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.045em var(--plum);
+    paint-order: stroke fill;
+    filter: drop-shadow(0 0.06em 0 var(--plum)) drop-shadow(0 4px 14px rgb(91 42 134 / 0.25));
+  }
+
+  .idle-float {
+    animation: idle-float 3s ease-in-out infinite;
+  }
+  .idle-float-slow {
+    animation: idle-float 4.2s ease-in-out infinite;
+  }
+  .torch-glow {
+    animation: torch-glow 2.6s ease-in-out infinite;
+  }
+  .gold-rim {
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.65),
+      inset 0 0 0 1px rgb(184 134 47 / 0.35),
+      0 10px 30px -10px rgb(91 42 134 / 0.28);
+  }
+  .shimmer-hover {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer-hover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgb(255 255 255 / 0.55) 50%,
+      transparent 60%
+    );
+    transform: translateX(-120%);
+    pointer-events: none;
+  }
+  .shimmer-hover:hover::after {
+    animation: shimmer 0.9s ease-out;
+  }
+  .press-squash {
+    transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .press-squash:active {
+    transform: scale(0.94);
+  }
+}
+
+@keyframes idle-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes torch-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 18px 2px rgb(255 184 77 / 0.45), 0 6px 20px -6px rgb(91 42 134 / 0.4);
+  }
+  50% {
+    box-shadow: 0 0 34px 8px rgb(255 184 77 / 0.7), 0 6px 20px -6px rgb(91 42 134 / 0.4);
+  }
+}
+
+@keyframes shimmer {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes mote-drift {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  15% {
+    opacity: var(--mote-opacity, 0.5);
+  }
+  85% {
+    opacity: var(--mote-opacity, 0.5);
+  }
+  100% {
+    transform: translate(var(--mote-dx, 30px), var(--mote-dy, -80px));
+    opacity: 0;
+  }
+}
+
+.mote {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgb(255 214 130 / 0.9) 0%, rgb(232 182 90 / 0) 70%);
+  animation: mote-drift var(--mote-duration, 12s) linear infinite;
+  animation-delay: var(--mote-delay, 0s);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .idle-float,
+  .idle-float-slow,
+  .torch-glow,
+  .mote {
+    animation: none;
+  }
+  .mote {
+    opacity: 0.3;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
