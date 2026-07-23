@@ -6,7 +6,7 @@ import { Motes } from "./motes";
 import { Reveal } from "./reveal";
 
 const TRUST_CHIPS = [
-  { label: "90.5% F1 detection", dot: "bg-wardgreen" },
+  { label: "93.5% F1 detection", dot: "bg-wardgreen" },
   { label: "~0.6ms overhead", dot: "bg-energy" },
   { label: "MIT · v0.1.0", dot: "bg-primary" },
 ];

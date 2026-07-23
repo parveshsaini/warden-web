@@ -9,7 +9,15 @@ servers:
     args: ["-y", "@modelcontextprotocol/server-filesystem", "."]
   - name: github
     command: npx
-    args: ["-y", "@modelcontextprotocol/server-github"]`;
+    args: ["-y", "@modelcontextprotocol/server-github"]
+
+security:
+  detector:
+    tier: llm # "heuristic" runs offline with no API key
+    provider: gemini # or "anthropic"
+    scanDescriptions: true
+    scanOutputs: true
+    mode: block`;
 
 export function Install() {
   return (
@@ -102,6 +110,11 @@ export function Install() {
             <code className="font-mono text-plum">/healthz</code> stays open for probes;{" "}
             <code className="font-mono text-plum">/mcp</code> and{" "}
             <code className="font-mono text-plum">/metrics</code> require the key.
+          </p>
+          <p className="mt-3 text-center text-sm leading-relaxed text-muted-foreground">
+            The <code className="font-mono text-plum">llm</code> detector tier reads{" "}
+            <code className="font-mono text-plum">GEMINI_API_KEY</code> from the environment. If
+            it&apos;s missing, Warden logs a warning and runs the heuristic tier only.
           </p>
         </Reveal>
       </div>
